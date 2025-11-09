@@ -5,13 +5,15 @@ import Post from '../post/Post';
 // import {Posts} from "../../dummyData";
 import axios from "axios";
 
-export default function Timeline() {
+export default function Timeline({ username }) {
   const [posts, setPosts] = useState([]);
 
   // 1回取得
   useEffect(()=>{
     const fetchPosts = async () => {
-      const response = await axios.get(
+      const response = username 
+        ? await axios.get(`/posts/profile/${username}`) 
+        : await axios.get(
         "/posts/timeline/6905940af9ff6816023baabb"
       );
       // console.log(response);

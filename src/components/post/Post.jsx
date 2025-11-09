@@ -16,14 +16,14 @@ export default function Post({post}) {
     useEffect(()=>{
         const fetchUser = async () => {
         const response = await axios.get(
-            `/users/${post.userId}`
+            `/users?userId=${post.userId}`
         );
         console.log(response);
         setUser(response.data);
         };
         fetchUser();
     }, []);
-     
+
     const handleLike = () => {
         setLike(isLiked ? like -1 : like + 1);
         setIsLiked(!isLiked);
