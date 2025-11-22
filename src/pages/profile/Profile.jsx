@@ -35,12 +35,14 @@ export default function Profile() {
                 <div className="profileCover">
                     <img 
                         // src="/assets/post/3.jpeg" 
-                        src={PUBLIC_FOLDER + "/post/3.jpeg"} 
+                        src={user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"} 
                         alt="" 
                         className='profileCoverImg'
                     />
                     <img
-                        src="/assets/person/1.jpeg" 
+                        src={
+                          user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                        } 
                         alt="" 
                         className='profileUserImg'
                         />
@@ -51,7 +53,7 @@ export default function Profile() {
                 </div>
             </div>
             <div className="profileRightBottom">
-                <TimeLine username="shin"/>
+                <TimeLine username={username}/>
                 <Rightbar  user={user}/>
             </div>
         </div>

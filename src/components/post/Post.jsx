@@ -5,6 +5,7 @@ import { MoreVert } from '@mui/icons-material';
 // import { useState } from 'react';
 import axios from 'axios';
 import { format } from "timeago.js";
+import { Link } from 'react-router-dom';
 
 export default function Post({post}) {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -22,7 +23,7 @@ export default function Post({post}) {
         setUser(response.data);
         };
         fetchUser();
-    }, []);
+    }, [post.userId]);
 
     const handleLike = () => {
         setLike(isLiked ? like -1 : like + 1);
@@ -34,11 +35,13 @@ export default function Post({post}) {
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postTopLeft">
+                    <Link to={`profile/${user.username}`}>
                     <img 
                         src={user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} 
                         alt="" 
                         className='postProfileImg'
                     />
+                    </Link>
                     <span className="postUserName">
                         {user.username}
                     </span>
