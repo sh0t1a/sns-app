@@ -37,7 +37,11 @@ export default function Post({post}) {
                 <div className="postTopLeft">
                     <Link to={`profile/${user.username}`}>
                     <img 
-                        src={user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} 
+                        src={
+                            user.profilePicture 
+                            ? PUBLIC_FOLDER + user.profilePicture 
+                            : PUBLIC_FOLDER + "/person/noAvatar.png"
+                        } 
                         alt="" 
                         className='postProfileImg'
                     />
