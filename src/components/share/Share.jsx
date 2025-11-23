@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import "./Share.css";
 import { Analytics, Face, Gif, Image } from '@mui/icons-material';
 import { AuthContext } from '../../state/AuthContext';
@@ -9,6 +9,9 @@ function Share() {
   const {user} = useContext(AuthContext);
   const desc = useRef();  
 
+  const [file, setFile] = useState(null);
+  console.log(file);
+ 
   const handleSubmit = async(e) => {
     e.preventDefault();
     // 投稿作成のロジックをここに追加
@@ -47,10 +50,17 @@ function Share() {
         
         <form className="shareButtons" onSubmit={(e) => handleSubmit(e)}>
             <div className="shareOptions">
-                <div className="shareOption">
+                <label className="shareOption" htmlFor='file'>
                     <Image className='shareIcon' htmlColor='blue' />
                     <span className="shareOptionText">写真</span>
-                </div>
+                    <input 
+                      type="file" 
+                      id="file" 
+                      accept='.png, .jpeg, .jpg'
+                      style={{display: "none"}}
+                      onChange={(e)=> setFile(e.target.files[0])}
+                    />
+                </label>
                 <div className="shareOption">
                     <Gif className='shareIcon' htmlColor='hotpink'/>
                     <span className="shareOptionText">GIF</span>
