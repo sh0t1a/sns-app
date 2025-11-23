@@ -35,16 +35,16 @@ export default function Topbar() {
                     <Notifications />
                     <span className="topbarIconBadge">2</span>
                 </div>
-                <Link to={`profile/${user.username}`}>
-                <img 
-                    src={
-                        user.profilePicture 
-                        ? PUBLIC_FOLDER + user.profilePicture 
-                        : PUBLIC_FOLDER + "/person/noAvatar.png"
-                    } 
-                    alt="" 
-                    className='topbarImg'
-                />
+                <Link to={`/profile/${user.username}`}>
+                    <img 
+                        src={
+                            user.profilePicture 
+                            ? PUBLIC_FOLDER + user.profilePicture 
+                            : PUBLIC_FOLDER + "/person/noAvatar.png"
+                        } 
+                        alt="" 
+                        className='topbarImg'
+                    />
                 </Link>
             </div>
         </div>

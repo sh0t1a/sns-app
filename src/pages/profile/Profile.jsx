@@ -23,7 +23,7 @@ export default function Profile() {
         setUser(response.data);
         };
         fetchUser();
-    }, []);
+    }, [username]);
 
   return (
     <>
@@ -34,17 +34,19 @@ export default function Profile() {
             <div className="profileRightTop">
                 <div className="profileCover">
                     <img 
-                        // src="/assets/post/3.jpeg" 
-                        src={user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"} 
+                        src={
+                          user.coverPicture || 
+                          PUBLIC_FOLDER + "/post/3.jpeg"} 
                         alt="" 
                         className='profileCoverImg'
                     />
                     <img
                         src={
-                          PUBLIC_FOLDER + user.profilePicture || 
-                          PUBLIC_FOLDER + "/person/noAvatar.png"
+                          user.profilePicture 
+                          ? PUBLIC_FOLDER + user.profilePicture 
+                          : PUBLIC_FOLDER + "/person/noAvatar.png"
                         } 
-                        alt="" 
+                        alt=""
                         className='profileUserImg'
                         />
                 </div>
