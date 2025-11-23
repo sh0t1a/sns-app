@@ -15,10 +15,26 @@ function Share() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     // 投稿作成のロジックをここに追加
+    // 文字投稿
     const newPost={
       userId: user._id,
       desc: desc.current.value
     };
+
+    if(file){
+        const data = new FormData();
+        const fileName = Date.now() + file.name; // ファイル名の重複を避けるためにタイムスタンプを追加
+        data.append("name", fileName);
+        data.append("file", file);
+        newPost.img = fileName;
+      try{
+        // 画像アップロード用のエンドポイントにPOSTリクエストを送信
+        await axios.post("/upload", data);
+      }catch(err){
+        console.log(err);
+      }
+    }
+
     try{
       await axios.post("/posts", newPost);
       window.location.reload();
